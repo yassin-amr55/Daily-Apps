@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header.tsx';
 import Hero from './components/Hero.tsx';
@@ -30,6 +31,11 @@ function HomePage({ theme, toggleTheme }: SecureVaultAppProps) {
 }
 
 function SecureVaultApp({ theme, toggleTheme }: SecureVaultAppProps) {
+  useEffect(() => {
+    // Scroll to top when SecureVault app is opened
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="secure-vault-app">
       <Routes>

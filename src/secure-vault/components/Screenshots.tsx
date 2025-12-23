@@ -165,7 +165,7 @@ export default function Screenshots() {
         </div>
 
         {/* Gradient blend to next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-white via-gray-50/50 to-gray-50 dark:from-slate-800 dark:via-slate-900/50 dark:to-slate-900" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-white via-gray-50/50 to-gray-50 dark:from-slate-800 dark:via-slate-900/50 dark:to-slate-900" />
       </section>
 
       {selectedIndex !== null && (

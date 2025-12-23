@@ -27,7 +27,7 @@ export default function HowItWorks() {
   return (
     <section className="py-24 bg-gray-50 dark:bg-slate-900 relative">
       {/* Gradient blend from previous section */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-50 via-gray-50/50 to-gray-50 dark:from-slate-900 dark:via-slate-900/50 dark:to-slate-900" />
+      <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-gray-50 via-gray-50/50 to-gray-50 dark:from-slate-900 dark:via-slate-900/50 dark:to-slate-900" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">

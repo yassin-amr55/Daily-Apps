@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -32,6 +33,11 @@ function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
 }
 
 function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
+  useEffect(() => {
+    // Scroll to top when TodoMaster app is opened
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="todo-master-app">
       <Routes>
