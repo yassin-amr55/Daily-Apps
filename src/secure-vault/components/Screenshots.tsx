@@ -79,7 +79,7 @@ export default function Screenshots() {
 
   return (
     <>
-      <section id="screenshots" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800">
+      <section id="screenshots" className="relative py-24 pb-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800">
         {/* Gradient blend from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-50 via-white/50 to-white dark:from-slate-900 dark:via-slate-800/50 dark:to-slate-800" />
         

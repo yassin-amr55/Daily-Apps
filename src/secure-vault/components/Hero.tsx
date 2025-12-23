@@ -20,7 +20,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="download" className="relative min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ paddingTop: '80px' }}>
+    <section id="download" className="relative min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ paddingTop: '120px' }}>
       {/* Gradient blend to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-gray-50/30 to-gray-50 dark:from-transparent dark:via-slate-900/30 dark:to-slate-900 pointer-events-none" />
       
