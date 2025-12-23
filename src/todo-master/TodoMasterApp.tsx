@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -8,6 +8,7 @@ import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import AnimatedBackground from './components/AnimatedBackground';
+import LoadingScreen from './components/LoadingScreen';
 import './todo-master.css';
 import './tailwind.css'; // Import Tailwind separately
 
@@ -33,10 +34,25 @@ function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
 }
 
 function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    // Scroll to top when TodoMaster app is opened
-    window.scrollTo(0, 0);
+    // Force scroll to top when TodoMaster app is opened
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Also try with a small delay to ensure DOM is ready
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
+
+    // Show loading screen for TodoMaster
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="todo-master-app">

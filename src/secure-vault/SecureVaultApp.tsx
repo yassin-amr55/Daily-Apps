@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header.tsx';
 import Hero from './components/Hero.tsx';
@@ -8,6 +8,7 @@ import HowItWorks from './components/HowItWorks.tsx';
 import Footer from './components/Footer.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import AnimatedBackground from './components/AnimatedBackground.tsx';
+import LoadingScreen from './components/LoadingScreen.tsx';
 import './secure-vault.css';
 import './tailwind.css'; // Import Tailwind separately
 
@@ -31,10 +32,25 @@ function HomePage({ theme, toggleTheme }: SecureVaultAppProps) {
 }
 
 function SecureVaultApp({ theme, toggleTheme }: SecureVaultAppProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    // Scroll to top when SecureVault app is opened
-    window.scrollTo(0, 0);
+    // Force scroll to top when SecureVault app is opened
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Also try with a small delay to ensure DOM is ready
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
+
+    // Show loading screen for SecureVault
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="secure-vault-app">
