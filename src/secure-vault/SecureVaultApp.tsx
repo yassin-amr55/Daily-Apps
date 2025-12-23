@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import Screenshots from './components/Screenshots';
-import HowItWorks from './components/HowItWorks';
-import Footer from './components/Footer';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import LoadingScreen from './components/LoadingScreen';
-import AnimatedBackground from './components/AnimatedBackground';
+import Header from './components/Header.tsx';
+import Hero from './components/Hero.tsx';
+import Features from './components/Features.tsx';
+import Screenshots from './components/Screenshots.tsx';
+import HowItWorks from './components/HowItWorks.tsx';
+import Footer from './components/Footer.tsx';
+import PrivacyPolicy from './components/PrivacyPolicy.tsx';
+import LoadingScreen from './components/LoadingScreen.tsx';
+import AnimatedBackground from './components/AnimatedBackground.tsx';
 import './secure-vault.css';
 import './tailwind.css'; // Import Tailwind separately
 
@@ -37,7 +37,12 @@ function SecureVaultApp({ theme, toggleTheme }: SecureVaultAppProps) {
   useEffect(() => {
     // Preload images
     const imageUrls = [
-      '/secure-vault-icon.png'
+      '/assets/SecureVault assets/screenshot1 tilted.png',
+      '/assets/SecureVault assets/screenshot1.png',
+      '/assets/SecureVault assets/screenshot2.png',
+      '/assets/SecureVault assets/screenshot3.png',
+      '/assets/SecureVault assets/screenshot4.png',
+      '/assets/SecureVault assets/icon.png'
     ];
 
     const imagePromises = imageUrls.map(url => {

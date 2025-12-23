@@ -7,22 +7,22 @@ export default function Screenshots() {
 
   const screenshots = [
     {
-      image: '/secure-vault-icon.png', // Placeholder - will be replaced with actual screenshots
+      image: '/assets/SecureVault assets/screenshot1.png',
       title: 'Email Management',
       description: 'Securely store and manage your email accounts with encrypted credentials.'
     },
     {
-      image: '/secure-vault-icon.png', // Placeholder - will be replaced with actual screenshots
+      image: '/assets/SecureVault assets/screenshot2.png',
       title: 'Password Storage',
       description: 'Store all your passwords with service tags and secure encryption.'
     },
     {
-      image: '/secure-vault-icon.png', // Placeholder - will be replaced with actual screenshots
+      image: '/assets/SecureVault assets/screenshot3.png',
       title: 'Username Organization',
       description: 'Keep track of usernames across different platforms and services.'
     },
     {
-      image: '/secure-vault-icon.png', // Placeholder - will be replaced with actual screenshots
+      image: '/assets/SecureVault assets/screenshot4.png',
       title: 'Password Generator',
       description: 'Generate strong, random passwords with customizable settings.'
     }

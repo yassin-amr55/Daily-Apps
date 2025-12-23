@@ -35,9 +35,9 @@ export default function PhoneMockup() {
       }}
     >
       <img 
-        src="/secure-vault-icon.png" 
+        src="/assets/SecureVault assets/screenshot1 tilted.png" 
         alt="SecureVault App Screenshot" 
-        className="w-full max-w-md mx-auto drop-shadow-2xl rounded-3xl"
+        className="w-full max-w-md mx-auto drop-shadow-2xl"
       />
     </div>
   );

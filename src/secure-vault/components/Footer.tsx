@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src="/secure-vault-icon.png" alt="SecureVault Logo" className="w-12 h-12 rounded-full shadow-lg" />
+              <img src="/assets/SecureVault assets/icon.png" alt="SecureVault Logo" className="w-12 h-12 rounded-full shadow-lg" />
               <div>
                 <div className="text-xl font-bold text-gray-900 dark:text-white">SecureVault</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">Secure your digital life</div>
