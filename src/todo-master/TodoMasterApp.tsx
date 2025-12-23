@@ -19,7 +19,7 @@ interface TodoMasterAppProps {
 
 function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
   return (
-    <div className="min-h-screen relative todo-master-app" style={{ minHeight: '100vh', position: 'relative' }}>
+    <div className="min-h-screen relative">
       <AnimatedBackground />
       <Header theme={theme} toggleTheme={toggleTheme} />
       <div style={{ paddingTop: '64px' }}>

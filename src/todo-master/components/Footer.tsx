@@ -20,6 +20,10 @@ export default function Footer() {
     navigate('/ToDo-Master/pp');
   };
 
+  const handleBackToDaily = () => {
+    navigate('/');
+  };
+
   return (
     <footer className="bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -40,6 +44,12 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">Quick Links</h3>
             <div className="space-y-2">
+              <button
+                onClick={handleBackToDaily}
+                className="block text-left text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Back to Daily Apps
+              </button>
               <a href="#features" className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                 Features
               </a>
@@ -57,26 +67,32 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">Get the App</h3>
-            <button
-              onClick={() => navigate('/')}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.yourcompany.todomaster"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-orange-500 dark:to-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
             >
               <PlayStoreIcon />
-              View on Daily Apps
-            </button>
+              Get it on Play Store
+            </a>
 
             <div className="flex gap-4 pt-2">
-              <button
-                onClick={() => navigate('/')}
+              <a
+                href="https://www.instagram.com/daily.app.s/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                aria-label="Daily Apps"
+                aria-label="Instagram"
               >
                 <InstagramIcon />
-              </button>
-              <button
-                onClick={() => navigate('/')}
+              </a>
+              <a
+                href="https://x.com/daily_app_s"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                aria-label="Daily Apps"
+                aria-label="X"
               >
                 {/* Branded X logo (outlined with inner stroke) */}
                 <svg
@@ -96,14 +112,14 @@ export default function Footer() {
                     <path d="M6 19 L18 7" stroke="currentColor" strokeWidth="2.2" />
                   </g>
                 </svg>
-              </button>
-              <button
-                onClick={() => navigate('/')}
+              </a>
+              <a
+                href="mailto:todomaster.todo@gmail.com"
                 className="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-                aria-label="Daily Apps"
+                aria-label="Email"
               >
                 <Mail className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

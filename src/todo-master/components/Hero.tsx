@@ -1,4 +1,4 @@
-import { FileText, CheckCircle, Calendar, Mic } from 'lucide-react';
+import { FileText, CheckCircle, Calendar, Mic, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import PhoneMockup from './PhoneMockup';
 
@@ -15,8 +15,22 @@ export default function Hero() {
     navigate('/ToDo-Master/pp');
   };
 
+  const handleBackToDaily = () => {
+    navigate('/');
+  };
+
   return (
     <section id="download" className="relative min-h-screen flex items-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Back to Daily Apps button */}
+      <button
+        onClick={handleBackToDaily}
+        className="absolute top-8 left-8 z-10 flex items-center gap-2 px-4 py-3 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-slate-700/50 transition-all duration-300 rounded-full border border-gray-200/50 dark:border-slate-700/50 shadow-lg"
+        title="Back to Daily Apps"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="font-medium">Back to Daily Apps</span>
+      </button>
+
       {/* Gradient blend to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-gray-50/30 to-gray-50 dark:from-transparent dark:via-slate-900/30 dark:to-slate-900 pointer-events-none" />
       
@@ -57,13 +71,15 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button
-                onClick={() => navigate('/')}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.yourcompany.todomaster"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-orange-500 dark:to-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <PlayStoreIcon />
-                View on Daily Apps
-              </button>
+                Get it on Play Store
+              </a>
               <button
                 onClick={handlePrivacyClick}
                 className="px-6 py-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center justify-center gap-2"
