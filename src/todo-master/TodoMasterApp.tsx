@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -7,7 +6,6 @@ import Screenshots from './components/Screenshots';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import LoadingScreen from './components/LoadingScreen';
 import AnimatedBackground from './components/AnimatedBackground';
 import './todo-master.css';
 import './tailwind.css'; // Import Tailwind separately
@@ -34,40 +32,6 @@ function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
 }
 
 function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Preload images
-    const imageUrls = [
-      '/assets/screenshots/screenshot1 tilted.png',
-      '/assets/screenshots/screenshot1.png',
-      '/assets/screenshots/screenshot2.png',
-      '/assets/screenshots/screenshot5.png',
-      '/assets/screenshots/screenshot4.png'
-    ];
-
-    const imagePromises = imageUrls.map(url => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(url);
-        img.onerror = reject;
-        img.src = url;
-      });
-    });
-
-    Promise.all(imagePromises)
-      .then(() => {
-        setTimeout(() => setIsLoading(false), 1200);
-      })
-      .catch(() => {
-        setTimeout(() => setIsLoading(false), 1500);
-      });
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <div className="todo-master-app">
       <Routes>
