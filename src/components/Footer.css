@@ -1,0 +1,143 @@
+.footer {
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  padding: 3rem 0 1rem;
+}
+
+.dark .footer {
+  background-color: #0f172a;
+  border-top-color: #334155;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.footer-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dark .footer-logo-text {
+  color: #f8fafc;
+}
+
+.footer-description {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.dark .footer-description {
+  color: #9ca3af;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-section h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .footer-section h4 {
+  color: #f8fafc;
+}
+
+.footer-section a {
+  display: block;
+  color: #6b7280;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #3b82f6;
+}
+
+.dark .footer-section a {
+  color: #9ca3af;
+}
+
+.dark .footer-section a:hover {
+  color: #f97316;
+}
+
+.footer-bottom {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.dark .footer-bottom {
+  border-top-color: #334155;
+  color: #9ca3af;
+}
+
+.footer-bottom p {
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.portfolio-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.dark .portfolio-link {
+  color: #f97316;
+}
+
+.dark .portfolio-link:hover {
+  color: #ea580c;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .footer-brand {
+    max-width: none;
+  }
+}

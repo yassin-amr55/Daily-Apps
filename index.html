@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Apps - Simple apps for your daily life</title>
+    <meta name="description" content="Discover productivity tools that actually work. No bloat. No overwhelm. Just what you need to get things done.">
+    <style>
+      /* Add border radius to favicon */
+      link[rel="icon"] {
+        border-radius: 20% !important;
+      }
+      /* Force favicon to be rounded in browser tabs */
+      head link[rel="icon"] {
+        mask: radial-gradient(circle, white 70%, transparent 70%);
+        -webkit-mask: radial-gradient(circle, white 70%, transparent 70%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
