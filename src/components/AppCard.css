@@ -152,6 +152,13 @@
   position: relative;
   overflow: hidden;
   gap: 0.75rem;
+  /* Mobile touch improvements */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .btn-view::before {
@@ -244,5 +251,18 @@
   
   .app-name {
     font-size: 1.25rem;
+  }
+  
+  /* Enhanced mobile touch targets */
+  .btn-view {
+    min-height: 48px;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Improve touch feedback */
+  .btn-view:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
   }
 }

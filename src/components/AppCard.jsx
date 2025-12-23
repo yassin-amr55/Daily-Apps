@@ -11,15 +11,22 @@ const ArrowRightIcon = () => (
 function AppCard({ app }) {
   const navigate = useNavigate()
 
-  const handleCardClick = () => {
-    // Navigate to local routes using React Router only
-    if (app.id === 'todo-master') {
-      navigate('/ToDo-Master')
-    } else if (app.id === 'secure-vault') {
-      navigate('/SecureVault')
-    } else {
-      navigate(`/${app.name.replace(/\s+/g, '-')}`)
-    }
+  const handleCardClick = (e) => {
+    // Prevent any default behavior and ensure the click is processed
+    e.preventDefault()
+    e.stopPropagation()
+    
+    // Add a small delay to ensure touch events are properly handled on mobile
+    setTimeout(() => {
+      // Navigate to local routes using React Router only
+      if (app.id === 'todo-master') {
+        navigate('/ToDo-Master')
+      } else if (app.id === 'secure-vault') {
+        navigate('/SecureVault')
+      } else {
+        navigate(`/${app.name.replace(/\s+/g, '-')}`)
+      }
+    }, 100)
   }
 
   return (
@@ -59,8 +66,14 @@ function AppCard({ app }) {
       <div className="app-actions">
         <button 
           onClick={handleCardClick}
+          onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
+          onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
           className="btn-view"
           aria-label={`View ${app.name} details`}
+          style={{ 
+            WebkitTapHighlightColor: 'transparent',
+            touchAction: 'manipulation'
+          }}
         >
           <span className="btn-text">View</span>
           <ArrowRightIcon />

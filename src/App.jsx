@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import AppsShowcase from './components/AppsShowcase'
@@ -8,6 +8,17 @@ import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
 import TodoMasterApp from './todo-master/TodoMasterApp' // Import TypeScript component
 import './App.css'
+
+// Scroll to top component
+function ScrollToTop() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  return null
+}
 
 // Home page component
 function HomePage({ theme, toggleTheme }) {
@@ -109,6 +120,7 @@ function App() {
   return (
     <Router>
       <div className={`app ${theme}`}>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage theme={theme} toggleTheme={toggleTheme} />} />
           <Route path="/ToDo-Master/*" element={<TodoMasterApp theme={theme} toggleTheme={toggleTheme} />} />
