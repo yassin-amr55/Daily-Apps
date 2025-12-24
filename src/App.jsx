@@ -43,6 +43,7 @@ function AppWithLoading({ theme, toggleTheme }) {
       setLoadingProgress(0)
       
       const startTime = Date.now()
+      const minLoadingTime = 300
       
       // Preload images and track progress
       const imageUrls = [
@@ -53,18 +54,38 @@ function AppWithLoading({ theme, toggleTheme }) {
 
       let loadedCount = 0
       const totalImages = imageUrls.length
+      let imagesLoaded = false
+
+      // Animate progress bar over minimum time
+      const progressInterval = setInterval(() => {
+        const elapsedTime = Date.now() - startTime
+        const timeProgress = Math.min((elapsedTime / minLoadingTime) * 100, 100)
+        
+        if (imagesLoaded) {
+          // If images are loaded, use time-based progress
+          setLoadingProgress(Math.round(timeProgress))
+          
+          if (timeProgress >= 100) {
+            clearInterval(progressInterval)
+            setTimeout(() => setIsLoading(false), 100)
+          }
+        } else {
+          // If images still loading, use actual loading progress but slower
+          const actualProgress = (loadedCount / totalImages) * 100
+          const smoothProgress = Math.min(timeProgress, actualProgress)
+          setLoadingProgress(Math.round(smoothProgress))
+        }
+      }, 20)
 
       const imagePromises = imageUrls.map(url => {
         return new Promise((resolve, reject) => {
           const img = new Image()
           img.onload = () => {
             loadedCount++
-            setLoadingProgress(Math.round((loadedCount / totalImages) * 100))
             resolve(url)
           }
           img.onerror = () => {
             loadedCount++
-            setLoadingProgress(Math.round((loadedCount / totalImages) * 100))
             reject()
           }
           img.src = url
@@ -73,14 +94,10 @@ function AppWithLoading({ theme, toggleTheme }) {
 
       Promise.allSettled(imagePromises)
         .then(() => {
-          setLoadingProgress(100)
-          
-          // Ensure minimum 300ms loading time
-          const elapsedTime = Date.now() - startTime
-          const remainingTime = Math.max(0, 300 - elapsedTime)
-          
-          setTimeout(() => setIsLoading(false), remainingTime + 100)
+          imagesLoaded = true
         })
+
+      return () => clearInterval(progressInterval)
     }
   }, [location.pathname])
 
