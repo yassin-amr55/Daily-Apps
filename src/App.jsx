@@ -42,6 +42,8 @@ function AppWithLoading({ theme, toggleTheme }) {
       setIsLoading(true)
       setLoadingProgress(0)
       
+      const startTime = Date.now()
+      
       // Preload images and track progress
       const imageUrls = [
         '/daily-apps.png',
@@ -72,8 +74,12 @@ function AppWithLoading({ theme, toggleTheme }) {
       Promise.allSettled(imagePromises)
         .then(() => {
           setLoadingProgress(100)
-          // Small delay to show 100% completion
-          setTimeout(() => setIsLoading(false), 200)
+          
+          // Ensure minimum 300ms loading time
+          const elapsedTime = Date.now() - startTime
+          const remainingTime = Math.max(0, 300 - elapsedTime)
+          
+          setTimeout(() => setIsLoading(false), remainingTime + 100)
         })
     }
   }, [location.pathname])

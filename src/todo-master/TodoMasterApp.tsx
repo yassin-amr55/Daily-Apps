@@ -50,35 +50,20 @@ function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 0);
 
-    // Real loading progress for TodoMaster
-    const loadingSteps = [
-      { name: 'Initializing...', duration: 200 },
-      { name: 'Loading components...', duration: 300 },
-      { name: 'Setting up theme...', duration: 200 },
-      { name: 'Ready!', duration: 100 }
-    ];
-
-    let currentProgress = 0;
-    let stepIndex = 0;
-
-    const progressInterval = setInterval(() => {
-      if (stepIndex < loadingSteps.length) {
-        const step = loadingSteps[stepIndex];
-        const stepProgress = (stepIndex + 1) * (100 / loadingSteps.length);
-        
-        if (currentProgress < stepProgress) {
-          currentProgress += 5;
-          setLoadingProgress(Math.min(currentProgress, stepProgress));
-        } else {
-          stepIndex++;
-        }
-      } else {
-        clearInterval(progressInterval);
+    // Fast loading for TodoMaster - simulate component initialization
+    let progress = 0;
+    const fastInterval = setInterval(() => {
+      progress += 25; // Jump by 25% each time
+      setLoadingProgress(progress);
+      
+      if (progress >= 100) {
+        clearInterval(fastInterval);
+        // Very short delay to show 100% completion
         setTimeout(() => setIsLoading(false), 100);
       }
-    }, 50);
+    }, 50); // Very fast updates
 
-    return () => clearInterval(progressInterval);
+    return () => clearInterval(fastInterval);
   }, []);
 
   if (isLoading) {
