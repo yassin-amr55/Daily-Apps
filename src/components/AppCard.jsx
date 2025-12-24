@@ -16,6 +16,9 @@ function AppCard({ app }) {
     e.preventDefault()
     e.stopPropagation()
     
+    // Immediately scroll to top when button is clicked
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    
     // Add a small delay to ensure touch events are properly handled on mobile
     setTimeout(() => {
       // Navigate to local routes using React Router only
