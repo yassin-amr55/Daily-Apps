@@ -1,23 +1,10 @@
-import { useEffect, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
-export default function LoadingScreen() {
-  const [progress, setProgress] = useState(0);
+interface LoadingScreenProps {
+  progress?: number;
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function LoadingScreen({ progress = 0 }: LoadingScreenProps) {
   return (
     <div className="fixed inset-0 z-50 bg-gradient-to-br from-white via-blue-50 to-blue-100 dark:from-slate-900 dark:via-slate-800 dark:to-orange-900 flex items-center justify-center">
       <div className="text-center">

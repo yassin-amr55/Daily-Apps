@@ -8,7 +8,7 @@ import HowItWorks from './components/HowItWorks.tsx';
 import Footer from './components/Footer.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
 import AnimatedBackground from './components/AnimatedBackground.tsx';
-import LoadingScreen from './components/LoadingScreen.tsx';
+import LoadingScreen from './components/LoadingScreen';
 import './secure-vault.css';
 import './tailwind.css'; // Import Tailwind separately
 
@@ -18,6 +18,11 @@ interface SecureVaultAppProps {
 }
 
 function HomePage({ theme, toggleTheme }: SecureVaultAppProps) {
+  useEffect(() => {
+    // Ensure scroll to top when HomePage component mounts
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -33,6 +38,7 @@ function HomePage({ theme, toggleTheme }: SecureVaultAppProps) {
 
 function SecureVaultApp({ theme, toggleTheme }: SecureVaultAppProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
     // Force scroll to top when SecureVault app is opened
@@ -42,14 +48,39 @@ function SecureVaultApp({ theme, toggleTheme }: SecureVaultAppProps) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 0);
 
-    // Show loading screen for SecureVault
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    // Real loading progress for SecureVault
+    const loadingSteps = [
+      { name: 'Initializing security...', duration: 250 },
+      { name: 'Loading encryption...', duration: 300 },
+      { name: 'Setting up vault...', duration: 200 },
+      { name: 'Secure!', duration: 100 }
+    ];
+
+    let currentProgress = 0;
+    let stepIndex = 0;
+
+    const progressInterval = setInterval(() => {
+      if (stepIndex < loadingSteps.length) {
+        const step = loadingSteps[stepIndex];
+        const stepProgress = (stepIndex + 1) * (100 / loadingSteps.length);
+        
+        if (currentProgress < stepProgress) {
+          currentProgress += 5;
+          setLoadingProgress(Math.min(currentProgress, stepProgress));
+        } else {
+          stepIndex++;
+        }
+      } else {
+        clearInterval(progressInterval);
+        setTimeout(() => setIsLoading(false), 100);
+      }
+    }, 50);
+
+    return () => clearInterval(progressInterval);
   }, []);
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen progress={loadingProgress} />;
   }
 
   return (

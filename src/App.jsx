@@ -30,6 +30,70 @@ function ScrollToTop() {
   return null
 }
 
+// Loading wrapper component that only shows loading on homepage
+function AppWithLoading({ theme, toggleTheme }) {
+  const location = useLocation()
+  const [isLoading, setIsLoading] = useState(false)
+  const [loadingProgress, setLoadingProgress] = useState(0)
+
+  useEffect(() => {
+    // Only show loading screen on homepage
+    if (location.pathname === '/') {
+      setIsLoading(true)
+      setLoadingProgress(0)
+      
+      // Preload images and track progress
+      const imageUrls = [
+        '/daily-apps.png',
+        '/todo-master-icon.png',
+        '/secure-vault-icon.png'
+      ]
+
+      let loadedCount = 0
+      const totalImages = imageUrls.length
+
+      const imagePromises = imageUrls.map(url => {
+        return new Promise((resolve, reject) => {
+          const img = new Image()
+          img.onload = () => {
+            loadedCount++
+            setLoadingProgress(Math.round((loadedCount / totalImages) * 100))
+            resolve(url)
+          }
+          img.onerror = () => {
+            loadedCount++
+            setLoadingProgress(Math.round((loadedCount / totalImages) * 100))
+            reject()
+          }
+          img.src = url
+        })
+      })
+
+      Promise.allSettled(imagePromises)
+        .then(() => {
+          setLoadingProgress(100)
+          // Small delay to show 100% completion
+          setTimeout(() => setIsLoading(false), 200)
+        })
+    }
+  }, [location.pathname])
+
+  if (isLoading && location.pathname === '/') {
+    return <LoadingScreen progress={loadingProgress} />
+  }
+
+  return (
+    <div className={`app ${theme}`}>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/ToDo-Master/*" element={<TodoMasterApp theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/SecureVault/*" element={<SecureVaultApp theme={theme} toggleTheme={toggleTheme} />} />
+      </Routes>
+    </div>
+  )
+}
+
 // Home page component
 function HomePage({ theme, toggleTheme }) {
   return (
@@ -48,59 +112,19 @@ function App() {
     const saved = localStorage.getItem('theme')
     return saved || 'light'
   })
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     localStorage.setItem('theme', theme)
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
 
-  useEffect(() => {
-    // Preload images and simulate loading
-    const imageUrls = [
-      '/daily-apps.png',
-      '/todo-master-icon.png',
-      '/secure-vault-icon.png'
-    ]
-
-    const imagePromises = imageUrls.map(url => {
-      return new Promise((resolve, reject) => {
-        const img = new Image()
-        img.onload = () => resolve(url)
-        img.onerror = reject
-        img.src = url
-      })
-    })
-
-    Promise.all(imagePromises)
-      .then(() => {
-        // Add a minimum loading time for smooth experience
-        setTimeout(() => setIsLoading(false), 1500)
-      })
-      .catch(() => {
-        // Even if images fail, hide loading screen after timeout
-        setTimeout(() => setIsLoading(false), 2000)
-      })
-  }, [])
-
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light')
   }
 
-  if (isLoading) {
-    return <LoadingScreen />
-  }
-
   return (
     <Router>
-      <div className={`app ${theme}`}>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomePage theme={theme} toggleTheme={toggleTheme} />} />
-          <Route path="/ToDo-Master/*" element={<TodoMasterApp theme={theme} toggleTheme={toggleTheme} />} />
-          <Route path="/SecureVault/*" element={<SecureVaultApp theme={theme} toggleTheme={toggleTheme} />} />
-        </Routes>
-      </div>
+      <AppWithLoading theme={theme} toggleTheme={toggleTheme} />
     </Router>
   )
 }

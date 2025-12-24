@@ -18,6 +18,11 @@ interface TodoMasterAppProps {
 }
 
 function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
+  useEffect(() => {
+    // Ensure scroll to top when HomePage component mounts
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -35,6 +40,7 @@ function HomePage({ theme, toggleTheme }: TodoMasterAppProps) {
 
 function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
     // Force scroll to top when TodoMaster app is opened
@@ -44,14 +50,39 @@ function TodoMasterApp({ theme, toggleTheme }: TodoMasterAppProps) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 0);
 
-    // Show loading screen for TodoMaster
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    // Real loading progress for TodoMaster
+    const loadingSteps = [
+      { name: 'Initializing...', duration: 200 },
+      { name: 'Loading components...', duration: 300 },
+      { name: 'Setting up theme...', duration: 200 },
+      { name: 'Ready!', duration: 100 }
+    ];
+
+    let currentProgress = 0;
+    let stepIndex = 0;
+
+    const progressInterval = setInterval(() => {
+      if (stepIndex < loadingSteps.length) {
+        const step = loadingSteps[stepIndex];
+        const stepProgress = (stepIndex + 1) * (100 / loadingSteps.length);
+        
+        if (currentProgress < stepProgress) {
+          currentProgress += 5;
+          setLoadingProgress(Math.min(currentProgress, stepProgress));
+        } else {
+          stepIndex++;
+        }
+      } else {
+        clearInterval(progressInterval);
+        setTimeout(() => setIsLoading(false), 100);
+      }
+    }, 50);
+
+    return () => clearInterval(progressInterval);
   }, []);
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen progress={loadingProgress} />;
   }
 
   return (

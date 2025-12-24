@@ -1,23 +1,6 @@
-import { useEffect, useState } from 'react';
 import './LoadingScreen.css';
 
-export default function LoadingScreen() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 8;
-      });
-    }, 120);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function LoadingScreen({ progress = 0 }) {
   return (
     <div className="loading-screen">
       {/* Animated background blobs */}
