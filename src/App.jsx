@@ -55,19 +55,33 @@ function AppWithLoading({ theme, toggleTheme }) {
       let loadedCount = 0
       const totalImages = imageUrls.length
       let imagesLoaded = false
+      let minTimeElapsed = false
+
+      // Check if we can finish loading
+      const checkFinishLoading = () => {
+        if (imagesLoaded && minTimeElapsed) {
+          clearInterval(progressInterval)
+          setTimeout(() => setIsLoading(false), 100)
+        }
+      }
 
       // Animate progress bar over minimum time
       const progressInterval = setInterval(() => {
         const elapsedTime = Date.now() - startTime
         const timeProgress = Math.min((elapsedTime / minLoadingTime) * 100, 100)
         
+        // Check if minimum time has elapsed
+        if (elapsedTime >= minLoadingTime) {
+          minTimeElapsed = true
+        }
+        
         if (imagesLoaded) {
           // If images are loaded, use time-based progress
           setLoadingProgress(Math.round(timeProgress))
           
           if (timeProgress >= 100) {
-            clearInterval(progressInterval)
-            setTimeout(() => setIsLoading(false), 100)
+            minTimeElapsed = true
+            checkFinishLoading()
           }
         } else {
           // If images still loading, use actual loading progress but slower
@@ -82,20 +96,25 @@ function AppWithLoading({ theme, toggleTheme }) {
           const img = new Image()
           img.onload = () => {
             loadedCount++
+            if (loadedCount === totalImages) {
+              imagesLoaded = true
+              setLoadingProgress(100)
+              checkFinishLoading()
+            }
             resolve(url)
           }
           img.onerror = () => {
             loadedCount++
+            if (loadedCount === totalImages) {
+              imagesLoaded = true
+              setLoadingProgress(100)
+              checkFinishLoading()
+            }
             reject()
           }
           img.src = url
         })
       })
-
-      Promise.allSettled(imagePromises)
-        .then(() => {
-          imagesLoaded = true
-        })
 
       return () => clearInterval(progressInterval)
     }

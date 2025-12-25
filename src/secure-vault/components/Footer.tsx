@@ -68,7 +68,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">Get the App</h3>
             <a
-              href="https://play.google.com/store/apps/details?id=com.yourcompany.securevault"
+              href="https://play.google.com/store/apps/details?id=com.dailyapps.securevault"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-orange-500 dark:to-red-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
