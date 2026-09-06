@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
             </h1>
             <h2 className="text-3xl font-semibold text-gray-700 dark:text-gray-300">Privacy Policy</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-              Effective Date: December 4, 2025 | Last Updated: December 4, 2025
+              Effective Date: September 6, 2026 | Last Updated: September 6, 2026
             </p>
           </div>
         </header>
@@ -89,7 +89,7 @@ export default function PrivacyPolicy() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
-                  <span><strong>Encryption:</strong> Your data is protected using AES-256-GCM encryption with a master key derived from your PIN.</span>
+                  <span><strong>Encryption:</strong> Your data is encrypted with a randomly generated AES-256-GCM key. That key is itself protected by a separate key derived from your PIN, so only your PIN can unlock it.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
@@ -118,7 +118,7 @@ export default function PrivacyPolicy() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
-                    <span>Your PIN is hashed using SHA-256 and never stored in plain text.</span>
+                    <span>Your PIN is never stored in plain text — it's processed with PBKDF2 (SHA-256, 100,000 iterations), and only the resulting hash is kept.</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
@@ -213,7 +213,7 @@ export default function PrivacyPolicy() {
         <footer className="text-center mt-16 space-y-4">
           <div className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
-            &copy; 2025 SecureVault. All rights reserved.
+            &copy; 2026 SecureVault. All rights reserved.
           </p>
           <p className="text-gray-400 dark:text-gray-500 text-sm">
             Built with privacy in mind • Designed for security
