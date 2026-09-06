@@ -59,7 +59,11 @@ export default function PrivacyPolicy() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 dark:bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
-                  <span><strong>No Data Transmission:</strong> Your passwords, emails, usernames, and PINs are stored exclusively on your device.</span>
+                  <span><strong>No Data Transmission:</strong> Your passwords, emails, usernames, PINs, and any document or card photos you add are stored exclusively on your device.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-2 h-2 bg-blue-500 dark:bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span><strong>Camera Permission:</strong> The app requests camera access only so you can photograph a document or card when you choose to add one. Photos are never taken automatically and never leave your device.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 dark:bg-orange-500 rounded-full mt-2 flex-shrink-0"></span>
@@ -85,11 +89,11 @@ export default function PrivacyPolicy() {
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
-                  <span><strong>Local Storage Only:</strong> All credentials are encrypted and stored in your device's local storage.</span>
+                  <span><strong>Local Storage Only:</strong> All credentials, and any document or card photos you add, are encrypted and stored in your device's local storage.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
-                  <span><strong>Encryption:</strong> Your data is encrypted with a randomly generated AES-256-GCM key. That key is itself protected by a separate key derived from your PIN, so only your PIN can unlock it.</span>
+                  <span><strong>Encryption:</strong> Your data is encrypted with a randomly generated AES-256-GCM key. That key is itself protected by a separate key derived from your PIN, so only your PIN can unlock it. Document and card photos are encrypted the same way as everything else.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
@@ -203,7 +207,7 @@ export default function PrivacyPolicy() {
 
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
-              <strong>Summary:</strong> SecureVault is a completely offline password manager. Your data never leaves your device, we don't collect any information about you, and we don't use any third-party services. Your privacy is 100% protected.
+              <strong>Summary:</strong> SecureVault is a completely offline password and document vault. Your data — including any document or card photos you add — never leaves your device, we don't collect any information about you, and we don't use any third-party services. Your privacy is 100% protected.
             </p>
           </div>
 
